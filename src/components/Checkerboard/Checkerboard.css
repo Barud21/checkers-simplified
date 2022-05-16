@@ -1,8 +1,10 @@
 #checkerboard {
   display: grid;
+  place-content: center;
+  place-items: center;
   grid-template-columns: repeat(10, 80px);
   grid-template-rows: repeat(10, 80px);
-  background-color: #00cf91;
+  background-color: #61635e;
   width: 800px;
   height: 800px;
 }
