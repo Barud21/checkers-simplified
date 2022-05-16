@@ -1,12 +1,16 @@
 .tile {
+  align-content: center;
   height: 80px;
   width: 80px;
 }
 
-.black-tile {
-  background-color: #61635e;
-}
-
 .white-tile {
   background-color: antiquewhite;
+}
+
+.piece {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: black;
 }
