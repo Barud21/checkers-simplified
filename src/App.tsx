@@ -1,7 +1,10 @@
+import Checkerboard from "./components/Checkerboard";
+import "./App.css";
+
 function App() {
   return (
-    <div>
-      Game
+    <div id="app">
+      <Checkerboard />
     </div>
   );
 }
