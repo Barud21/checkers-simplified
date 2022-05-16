@@ -1,4 +1,4 @@
-import Checkerboard from "./components/Checkerboard";
+import Checkerboard from "./components/Checkerboard/Checkerboard";
 import "./App.css";
 
 function App() {
