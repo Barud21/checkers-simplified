@@ -1,23 +1,23 @@
-# Weather Api
+# Warcaby
 
 ## Zadanie
 
-Napisz aplikację dostarczającą dane o pogodzie
+Stwórz planszę 10x10 dla gry warcaby oraz umieść na niej jednego
+pionka. Pionek (kółko) powinien móc poruszać się za pomocą strzałek na klawiaturze. Dane gry powinny być przechowywane w kontekście reactowym.
+Do wykonania zadania proszę użyć reactjs. Gra nie musi być responsywna oraz nie są wymagane jakiekolwiek grafiki.
 
-- Aplikacja posiada input LAT i LON w które wpisuje się współrzędne
-- Aplikacja wyświetla aktualne dane o pogodzie dla podanych w inputach współrzędnych - przynajmniej temperaturę, ciśnienie i wilgotność
-- Aplikacja posiada przełącznik za pomocą którego można zmienić źródło z których pochodzą dane. np. 2 różne API internetowe
-- Aplikacja wyświetla które źródło jest aktualnie używane.
-- Korzystając z obu źródeł danych aplikacja ma wyglądać tak samo tj. Jeżeli wyświetlamy tylko temperaturę, ciśnienie i wilgotność ze źródła A, to ze źródła B mamy też tylko to wyświetlać. Jeżeli przy danych ze źródła A temperatura jest wyświetlana w ‘C po przełączeniu nadal ma się tak wyświetlać niezależnie czy ze źródła B przychodzi w ‘C czy nie
+## Opis działania aplikacji
 
-Wskazówki
+Naciśnięcie którejkolwiek strzałki spowoduje pokazanie opcji ruchu w tym kierunku, następne naciśnięcie strzałki wybiera konkretną pozycję, np. naciśnięcie strzałki w górę pokaże opcje ruchu do góra-lewo i góra-prawo, naciśnięcie strzałki w lewo lub w prawo spowoduje wybranie odpowiedniej opcji.
+Jeśli użytkownik naciśnie 2 razy pod rząd tę samą strzałkę spowoduje to pokazanie oraz a następnie ukrycie opcji ruchu. Taki sam efekt będzie miało naciśnięcie strzałki a po niej wciśnięcie strzałki w przeciwnym kierunku bądź klawisza Escape.
 
-- Przykładowe API z których mogą pochodzić dane: https://rapidapi.com/blog/access-global-weather-data-with-these-weather-apis/
-- Nie zostawiaj w repozytorium kluczy prywatnych do API. Skorzystaj ze zmiennych środowiskowych. ENVów.
-- Zapoznaj się z wzorcem projektowym ["Adapter"](https://refactoring.guru/pl/design-patterns/adapter) [(przykład)](https://refactoring.guru/pl/design-patterns/adapter/typescript/example). Może Ci on pomóc w lepszym poukładaniu kodu w aplikacji.
-- Pamiętaj o testach :). Testy znajdują się w folderze cypress/integration. Wraz z przykładowym testem `example.ts`.
-- Żeby testy przechodziły pamiętaj, że musi być włączony serwer ponieważ są to testy e2e.
-- Zapoznaj się z tym jak kodować w Nest'cie poniżej.
+## Testy integracyjne
+
+Napisano testy integracyjne sprawdzające poprawność działania aplikacji przy wciskaniu kombinacji klawiszy, przycisku Reset, itp.
+
+## Hostowanie
+
+Aplikację zahostowano na platformie heroku
 
 # Getting Started with Create React App
 
@@ -62,9 +62,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

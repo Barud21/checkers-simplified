@@ -248,9 +248,9 @@ function Board() {
   return (
     <div tabIndex={-1}>
       <div className="title">Checkers</div>
-      <div id="checkerboard">{board}</div>
+      <div className="checkerboard">{board}</div>
       <div className="description">
-        <div>
+        <div id="description__position">
           Position: {horizontalAxis[piecePosition[0].x]}
           {verticalAxis[piecePosition[0].y]}
         </div>
