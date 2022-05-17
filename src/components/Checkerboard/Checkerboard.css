@@ -2,9 +2,34 @@
   display: grid;
   place-content: center;
   place-items: center;
-  grid-template-columns: repeat(10, 80px);
-  grid-template-rows: repeat(10, 80px);
+  grid-template-columns: repeat(10, 60px);
+  grid-template-rows: repeat(10, 60px);
   background-color: #61635e;
-  width: 800px;
-  height: 800px;
+  width: 600px;
+  height: 600px;
+  border: black 5px;
+  border-style: solid;
+}
+
+.title {
+  font-size: 32px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.description__reset-button {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
 }
