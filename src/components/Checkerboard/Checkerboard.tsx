@@ -136,7 +136,7 @@ function Board() {
   };
 
   const checkMove = (moveX: number, moveY: number) => {
-    if (moveX >= 0 && moveX <= 9 && moveX >= 0 && moveY <= 9) {
+    if (moveX >= 0 && moveX <= 9 && moveY >= 0 && moveY <= 9) {
       return true;
     } else {
       return false;
