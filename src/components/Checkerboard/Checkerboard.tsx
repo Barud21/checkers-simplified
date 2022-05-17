@@ -42,6 +42,8 @@ function Board() {
         } else if (possibleMoves[0].x === possibleMoves[1].x) {
           verticalMoves(event.key);
         }
+      } else if (possibleMoves.length === 1) {
+        onePossibleMove(event.key);
       }
     };
 
@@ -61,7 +63,11 @@ function Board() {
       const newPiecePosition: Piece[] = [possibleMoves[1]];
       setPiecePosition(newPiecePosition);
       setPossibleMoves(defaultMoves);
-    } else if (keyPressed === "ArrowUp" || keyPressed === "ArrowDown") {
+    } else if (
+      keyPressed === "ArrowUp" ||
+      keyPressed === "ArrowDown" ||
+      keyPressed === "Escape"
+    ) {
       setPossibleMoves(defaultMoves);
     }
   };
@@ -75,40 +81,134 @@ function Board() {
       const newPiecePosition: Piece[] = [possibleMoves[1]];
       setPiecePosition(newPiecePosition);
       setPossibleMoves(defaultMoves);
-    } else if (keyPressed === "ArrowLeft" || keyPressed === "ArrowRight") {
+    } else if (
+      keyPressed === "ArrowLeft" ||
+      keyPressed === "ArrowRight" ||
+      keyPressed === "Escape"
+    ) {
       setPossibleMoves(defaultMoves);
     }
   };
 
+  const onePossibleMove = (keyPressed: string) => {
+    if (
+      possibleMoves[0].x > piecePosition[0].x &&
+      possibleMoves[0].y > piecePosition[0].y &&
+      (keyPressed === "ArrowRight" || keyPressed === "ArrowUp")
+    ) {
+      const newPiecePosition: Piece[] = [possibleMoves[0]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (
+      possibleMoves[0].x > piecePosition[0].x &&
+      possibleMoves[0].y < piecePosition[0].y &&
+      (keyPressed === "ArrowRight" || keyPressed === "ArrowDown")
+    ) {
+      const newPiecePosition: Piece[] = [possibleMoves[0]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (
+      possibleMoves[0].x < piecePosition[0].x &&
+      possibleMoves[0].y < piecePosition[0].y &&
+      (keyPressed === "ArrowLeft" || keyPressed === "ArrowDown")
+    ) {
+      const newPiecePosition: Piece[] = [possibleMoves[0]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (
+      possibleMoves[0].x < piecePosition[0].x &&
+      possibleMoves[0].y > piecePosition[0].y &&
+      (keyPressed === "ArrowLeft" || keyPressed === "ArrowUp")
+    ) {
+      const newPiecePosition: Piece[] = [possibleMoves[0]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (keyPressed === "Escape") {
+      setPossibleMoves(defaultMoves);
+    }
+  };
+
+  const possibilitiesToMove = {
+    upLeft: { x: piecePosition[0].x - 1, y: piecePosition[0].y + 1 },
+    upRight: { x: piecePosition[0].x + 1, y: piecePosition[0].y + 1 },
+    downLeft: { x: piecePosition[0].x - 1, y: piecePosition[0].y - 1 },
+    downRight: { x: piecePosition[0].x + 1, y: piecePosition[0].y - 1 },
+  };
+
+  const checkMove = (moveX: number, moveY: number) => {
+    if (moveX >= 0 && moveX <= 9 && moveX >= 0 && moveY <= 9) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const upHandler = () => {
-    const upMoves: IPossibleMoves[] = [
-      { x: piecePosition[0].x - 1, y: piecePosition[0].y + 1 },
-      { x: piecePosition[0].x + 1, y: piecePosition[0].y + 1 },
-    ];
+    const upMoves: IPossibleMoves[] = [];
+    if (checkMove(possibilitiesToMove.upLeft.x, possibilitiesToMove.upLeft.y)) {
+      upMoves.push(possibilitiesToMove.upLeft);
+    }
+    if (
+      checkMove(possibilitiesToMove.upRight.x, possibilitiesToMove.upRight.y)
+    ) {
+      upMoves.push(possibilitiesToMove.upRight);
+    }
+
     setPossibleMoves(upMoves);
   };
 
   const downHandler = () => {
-    const downMoves: IPossibleMoves[] = [
-      { x: piecePosition[0].x - 1, y: piecePosition[0].y - 1 },
-      { x: piecePosition[0].x + 1, y: piecePosition[0].y - 1 },
-    ];
+    const downMoves: IPossibleMoves[] = [];
+
+    if (
+      checkMove(possibilitiesToMove.downLeft.x, possibilitiesToMove.downLeft.y)
+    ) {
+      downMoves.push(possibilitiesToMove.downLeft);
+    }
+    if (
+      checkMove(
+        possibilitiesToMove.downRight.x,
+        possibilitiesToMove.downRight.y
+      )
+    ) {
+      downMoves.push(possibilitiesToMove.downRight);
+    }
+
     setPossibleMoves(downMoves);
   };
 
   const leftHandler = () => {
-    const leftMoves: IPossibleMoves[] = [
-      { x: piecePosition[0].x - 1, y: piecePosition[0].y - 1 },
-      { x: piecePosition[0].x - 1, y: piecePosition[0].y + 1 },
-    ];
+    const leftMoves: IPossibleMoves[] = [];
+
+    if (
+      checkMove(possibilitiesToMove.downLeft.x, possibilitiesToMove.downLeft.y)
+    ) {
+      leftMoves.push(possibilitiesToMove.downLeft);
+    }
+    if (checkMove(possibilitiesToMove.upLeft.x, possibilitiesToMove.upLeft.y)) {
+      leftMoves.push(possibilitiesToMove.upLeft);
+    }
+
     setPossibleMoves(leftMoves);
   };
 
   const rightHandler = () => {
-    const rightMoves: IPossibleMoves[] = [
-      { x: piecePosition[0].x + 1, y: piecePosition[0].y - 1 },
-      { x: piecePosition[0].x + 1, y: piecePosition[0].y + 1 },
-    ];
+    const rightMoves: IPossibleMoves[] = [];
+
+    if (
+      checkMove(
+        possibilitiesToMove.downRight.x,
+        possibilitiesToMove.downRight.y
+      )
+    ) {
+      rightMoves.push(possibilitiesToMove.downRight);
+    }
+    if (
+      checkMove(possibilitiesToMove.upRight.x, possibilitiesToMove.upRight.y)
+    ) {
+      rightMoves.push(possibilitiesToMove.upRight);
+    }
+
     setPossibleMoves(rightMoves);
   };
 
