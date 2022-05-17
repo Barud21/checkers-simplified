@@ -26,9 +26,7 @@ function Board() {
 
   useEffect(() => {
     const handleKeyPress = (event: { key: string }) => {
-      console.log(event.key);
-      if (possibleMoves.length > 0) {
-      } else if (possibleMoves.length === 0) {
+      if (possibleMoves.length === 0) {
         if (event.key === "ArrowUp") {
           upHandler();
         } else if (event.key === "ArrowDown") {
@@ -38,16 +36,49 @@ function Board() {
         } else if (event.key === "ArrowRight") {
           rightHandler();
         }
+      } else if (possibleMoves.length === 2) {
+        if (possibleMoves[0].y === possibleMoves[1].y) {
+          horizontalMoves(event.key);
+        } else if (possibleMoves[0].x === possibleMoves[1].x) {
+          verticalMoves(event.key);
+        }
       }
     };
 
     document.addEventListener("keydown", handleKeyPress);
 
-    // Don't forget to clean up
     return function cleanup() {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [possibleMoves]);
+
+  const horizontalMoves = (keyPressed: string) => {
+    if (keyPressed === "ArrowLeft") {
+      const newPiecePosition: Piece[] = [possibleMoves[0]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (keyPressed === "ArrowRight") {
+      const newPiecePosition: Piece[] = [possibleMoves[1]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (keyPressed === "ArrowUp" || keyPressed === "ArrowDown") {
+      setPossibleMoves(defaultMoves);
+    }
+  };
+
+  const verticalMoves = (keyPressed: string) => {
+    if (keyPressed === "ArrowDown") {
+      const newPiecePosition: Piece[] = [possibleMoves[0]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (keyPressed === "ArrowUp") {
+      const newPiecePosition: Piece[] = [possibleMoves[1]];
+      setPiecePosition(newPiecePosition);
+      setPossibleMoves(defaultMoves);
+    } else if (keyPressed === "ArrowLeft" || keyPressed === "ArrowRight") {
+      setPossibleMoves(defaultMoves);
+    }
+  };
 
   const upHandler = () => {
     const upMoves: IPossibleMoves[] = [
@@ -55,7 +86,6 @@ function Board() {
       { x: piecePosition[0].x + 1, y: piecePosition[0].y + 1 },
     ];
     setPossibleMoves(upMoves);
-    console.log(upMoves);
   };
 
   const downHandler = () => {
@@ -68,16 +98,16 @@ function Board() {
 
   const leftHandler = () => {
     const leftMoves: IPossibleMoves[] = [
-      { x: piecePosition[0].x - 1, y: piecePosition[0].y + 1 },
       { x: piecePosition[0].x - 1, y: piecePosition[0].y - 1 },
+      { x: piecePosition[0].x - 1, y: piecePosition[0].y + 1 },
     ];
     setPossibleMoves(leftMoves);
   };
 
   const rightHandler = () => {
     const rightMoves: IPossibleMoves[] = [
-      { x: piecePosition[0].x + 1, y: piecePosition[0].y + 1 },
       { x: piecePosition[0].x + 1, y: piecePosition[0].y - 1 },
+      { x: piecePosition[0].x + 1, y: piecePosition[0].y + 1 },
     ];
     setPossibleMoves(rightMoves);
   };
@@ -109,6 +139,7 @@ function Board() {
       );
     }
   }
+
   return (
     <div id="checkerboard" tabIndex={-1}>
       {board}
