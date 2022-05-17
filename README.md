@@ -17,7 +17,7 @@ Napisano testy integracyjne sprawdzające poprawność działania aplikacji przy
 
 ## Hostowanie
 
-Aplikację zahostowano na platformie heroku
+Aplikację zahostowano na platformie heroku (https://checkers-simplified.herokuapp.com).
 
 # Getting Started with Create React App
 
