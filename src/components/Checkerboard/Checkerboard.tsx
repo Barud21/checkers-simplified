@@ -212,6 +212,11 @@ function Board() {
     setPossibleMoves(rightMoves);
   };
 
+  const onResetButton = () => {
+    setPossibleMoves(defaultMoves);
+    setPiecePosition(defaultPosition);
+  };
+
   for (let j = verticalAxis.length - 1; j >= 0; j--) {
     for (let i = 0; i < horizontalAxis.length; i++) {
       const number = j + i + 2;
@@ -241,8 +246,18 @@ function Board() {
   }
 
   return (
-    <div id="checkerboard" tabIndex={-1}>
-      {board}
+    <div tabIndex={-1}>
+      <div className="title">Checkers</div>
+      <div id="checkerboard">{board}</div>
+      <div className="description">
+        <div>
+          Position: {horizontalAxis[piecePosition[0].x]}
+          {verticalAxis[piecePosition[0].y]}
+        </div>
+        <button className="description__reset-button" onClick={onResetButton}>
+          Reset game
+        </button>
+      </div>
     </div>
   );
 }
