@@ -1,7 +1,7 @@
 .tile {
   align-content: center;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
 }
 
 .white-tile {
@@ -9,15 +9,15 @@
 }
 
 .piece {
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   background-color: black;
 }
 
 .move {
   align-content: center;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   background-color: rgb(124, 164, 223);
 }
